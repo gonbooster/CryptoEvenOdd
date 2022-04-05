@@ -30,6 +30,7 @@
         "lose_bet_body" : "Don't be discouraged, next time you might get it ;D",
         "draw_bet_title" : "You have drawn",
         "draw_bet_body" : "You have retrieved ",
-        "statistics": "Statistics (Even: {{even}} % - Odd: {{odd}} %)"
+        "statistics": "Statistics (Even: {{even}} % - Odd: {{odd}} %)",
+        "contract": "Contract"
     }
 }

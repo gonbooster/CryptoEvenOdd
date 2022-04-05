@@ -30,7 +30,8 @@
         "lose_bet_body" : "No te desanimes, la siguiente puede que lo consigas ;D",
         "draw_bet_title" : "Has empatado",
         "draw_bet_body" : "Has recuperado ",
-        "statistics": "Estadísticas (Par: {{even}} % - Impar: {{odd}} %)"
+        "statistics": "Estadísticas (Par: {{even}} % - Impar: {{odd}} %)",
+        "contract": "Contrato"
         
 
         
