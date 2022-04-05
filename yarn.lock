@@ -1112,6 +1112,14 @@
     "@babel/helper-create-regexp-features-plugin" "^7.12.13"
     "@babel/helper-plugin-utils" "^7.12.13"
 
+"@babel/polyfill@7.0.0":
+  "integrity" "sha512-dnrMRkyyr74CRelJwvgnnSUDh2ge2NCTyHVwpOdvRMHtJUyxLtMAfhBN3s64pY41zdw0kgiLPh6S20eb1NcX6Q=="
+  "resolved" "https://registry.npmjs.org/@babel/polyfill/-/polyfill-7.0.0.tgz"
+  "version" "7.0.0"
+  dependencies:
+    "core-js" "^2.5.7"
+    "regenerator-runtime" "^0.11.1"
+
 "@babel/preset-env@^7.1.6", "@babel/preset-env@^7.12.1", "@babel/preset-env@^7.8.4":
   "integrity" "sha512-9PMijx8zFbCwTHrd2P4PJR5nWGH3zWebx2OcpTjqQrHhCiL2ssSR2Sc9ko2BsI2VmVBfoaQmPrlMTCui4LmXQg=="
   "resolved" "https://registry.npmjs.org/@babel/preset-env/-/preset-env-7.12.17.tgz"
@@ -1342,6 +1350,13 @@
   "version" "7.17.8"
   dependencies:
     "regenerator-runtime" "^0.13.4"
+
+"@babel/runtime@7.1.2":
+  "integrity" "sha512-Y3SCjmhSupzFB6wcv1KmmFucH6gDVnI30WjOcicV10ju0cZjak3Jcs67YLIXBrmZYw1xCrVeJPbycFwrqNyxpg=="
+  "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.1.2.tgz"
+  "version" "7.1.2"
+  dependencies:
+    "regenerator-runtime" "^0.12.0"
 
 "@babel/runtime@7.12.1":
   "integrity" "sha512-J5AIf3vPj3UwXaAzb5j1xM4WAQDX3EMgemF8rjCP3SoW09LfRKAXQKt6CoVYl230P6iWdRcBbnLDDdnqWxZSCA=="
@@ -3546,6 +3561,29 @@
   "resolved" "https://registry.npmjs.org/@ledgerhq/logs/-/logs-4.72.0.tgz"
   "version" "4.72.0"
 
+"@maticnetwork/maticjs@^3.2.4":
+  "integrity" "sha512-M+sjTTrgWpeE60ihYt8muwygOhXz7rCPaYEz2eWFurLOtmsno4czH+m9nnlDbnV4pj/MVpFOxp7DKhPNW3kM/A=="
+  "resolved" "https://registry.npmjs.org/@maticnetwork/maticjs/-/maticjs-3.2.4.tgz"
+  "version" "3.2.4"
+  dependencies:
+    "eth-sig-util" "^2.5.3"
+    "ethereumjs-block" "2.2.0"
+    "ethereumjs-tx" "1.3.7"
+    "ethereumjs-util" "^5.2.0"
+    "merkle-patricia-tree" "2.3.2"
+    "node-fetch" "^2.6.1"
+
+"@maticnetwork/walletconnect-provider@^0.0.1-beta.1":
+  "integrity" "sha512-Pjysxop/eZmQVzfHK+6o4eseOKBZo+jjSCvJN0iHWjE1BVPiFck0OW0TlIHFjvF/O4wZEqPcmizIaLAecmB22g=="
+  "resolved" "https://registry.npmjs.org/@maticnetwork/walletconnect-provider/-/walletconnect-provider-0.0.1-beta.1.tgz"
+  "version" "0.0.1-beta.1"
+  dependencies:
+    "@babel/polyfill" "7.0.0"
+    "@babel/runtime" "7.1.2"
+    "@walletconnect/browser" "1.0.0-beta.22"
+    "@walletconnect/qrcode-modal" "^1.0.0-beta.22"
+    "@walletconnect/utils" "1.0.0-beta.22"
+
 "@metamask/detect-provider@^1.2.0":
   "integrity" "sha512-ocA76vt+8D0thgXZ7LxFPyqw3H7988qblgzddTDA6B8a/yU0uKV42QR/DhA+Jh11rJjxW0jKvwb5htA6krNZDQ=="
   "resolved" "https://registry.npmjs.org/@metamask/detect-provider/-/detect-provider-1.2.0.tgz"
@@ -4506,6 +4544,15 @@
     "@walletconnect/window-metadata" "1.0.0"
     "detect-browser" "5.2.0"
 
+"@walletconnect/browser@1.0.0-beta.22":
+  "integrity" "sha512-ULDybOLJcK2+kaW4RPCIp7RnO6k7dCgC6S2twZ7xsHmlCBpPqq5Jhs28714CTbqouZ9wL78mfTO3KbReCdjfgA=="
+  "resolved" "https://registry.npmjs.org/@walletconnect/browser/-/browser-1.0.0-beta.22.tgz"
+  "version" "1.0.0-beta.22"
+  dependencies:
+    "@walletconnect/core" "^1.0.0-beta.22"
+    "@walletconnect/types" "^1.0.0-beta.21"
+    "@walletconnect/utils" "^1.0.0-beta.22"
+
 "@walletconnect/client@^1.7.7":
   "integrity" "sha512-UuDkpXDc1Emx09aGXKz2Fg8omNp5J8ZRgNblnQTb8xnoQ8rgOJSyhbFR37PFIFwVpriZZDAgmy8HlqoGwLQ2ug=="
   "resolved" "https://registry.npmjs.org/@walletconnect/client/-/client-1.7.7.tgz"
@@ -4516,7 +4563,7 @@
     "@walletconnect/types" "^1.7.7"
     "@walletconnect/utils" "^1.7.7"
 
-"@walletconnect/core@^1.7.7":
+"@walletconnect/core@^1.0.0-beta.22", "@walletconnect/core@^1.7.7":
   "integrity" "sha512-XsF2x4JcBS1V2Nk/Uh38dU7ZlLmW/R5oxHp4+tVgCwTID6nZlo3vUSHBOqM7jgDRblKOHixANollm0r94bM8Cg=="
   "resolved" "https://registry.npmjs.org/@walletconnect/core/-/core-1.7.7.tgz"
   "version" "1.7.7"
@@ -4609,7 +4656,7 @@
   "resolved" "https://registry.npmjs.org/@walletconnect/mobile-registry/-/mobile-registry-1.4.0.tgz"
   "version" "1.4.0"
 
-"@walletconnect/qrcode-modal@^1.7.7":
+"@walletconnect/qrcode-modal@^1.0.0-beta.22", "@walletconnect/qrcode-modal@^1.7.7":
   "integrity" "sha512-HRzw6g4P8/C4ClJYJShaGfdvjfrTfkXv+eb+IylWGWvC8IQhuiSXCq5+F3t0CXxuZs3ir26abgviEMRFQxGKdA=="
   "resolved" "https://registry.npmjs.org/@walletconnect/qrcode-modal/-/qrcode-modal-1.7.7.tgz"
   "version" "1.7.7"
@@ -4669,12 +4716,12 @@
     "@walletconnect/utils" "^1.7.7"
     "ws" "7.5.3"
 
-"@walletconnect/types@^1.7.1", "@walletconnect/types@^1.7.7":
+"@walletconnect/types@^1.0.0-beta.21", "@walletconnect/types@^1.7.1", "@walletconnect/types@^1.7.7":
   "integrity" "sha512-yXJrLxwLLCXtWgd/e8FjfY9v5DKds12Z7EEPzUrPSq6v7WtXpqate577KwlFQ6UYzioQzIEDE8+98j+0aiZbsw=="
   "resolved" "https://registry.npmjs.org/@walletconnect/types/-/types-1.7.7.tgz"
   "version" "1.7.7"
 
-"@walletconnect/utils@^1.7.7":
+"@walletconnect/utils@^1.0.0-beta.22", "@walletconnect/utils@^1.7.7":
   "integrity" "sha512-slNlnROS4DEusGFx53hshIBylYhzd5JtGF+AJpza+Tc616+u8ozjQ9aKKUaV85bucnv5Q42bTwLYrYrXiydmuw=="
   "resolved" "https://registry.npmjs.org/@walletconnect/utils/-/utils-1.7.7.tgz"
   "version" "1.7.7"
@@ -4686,6 +4733,14 @@
     "bn.js" "4.11.8"
     "js-sha3" "0.8.0"
     "query-string" "6.13.5"
+
+"@walletconnect/utils@1.0.0-beta.22":
+  "integrity" "sha512-7TTGBP/3eoJYGUfnZcWCvuKP58ccOUiJi7Y0zZmA+u61e0bbFaMTaZk7FLixIqnsIoh0cowOQmSwdtQibh2piA=="
+  "resolved" "https://registry.npmjs.org/@walletconnect/utils/-/utils-1.0.0-beta.22.tgz"
+  "version" "1.0.0-beta.22"
+  dependencies:
+    "@walletconnect/types" "^1.0.0-beta.21"
+    "ethers" "^4.0.27"
 
 "@walletconnect/window-getters@^1.0.0", "@walletconnect/window-getters@1.0.0":
   "integrity" "sha512-xB0SQsLaleIYIkSsl43vm8EwETpBzJ2gnzk7e0wMF3ktqiTGS6TFHxcprMl5R44KKh4tCcHCJwolMCaDSwtAaA=="
@@ -7615,7 +7670,7 @@
   "resolved" "https://registry.npmjs.org/core-js-pure/-/core-js-pure-3.18.1.tgz"
   "version" "3.18.1"
 
-"core-js@^2.4.0", "core-js@^2.5.0":
+"core-js@^2.4.0", "core-js@^2.5.0", "core-js@^2.5.7":
   "integrity" "sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ=="
   "resolved" "https://registry.npmjs.org/core-js/-/core-js-2.6.12.tgz"
   "version" "2.6.12"
@@ -9352,6 +9407,16 @@
     "ethereumjs-abi" "git+https://github.com/ethereumjs/ethereumjs-abi.git"
     "ethereumjs-util" "^5.1.1"
 
+"eth-sig-util@^2.5.3":
+  "integrity" "sha512-aCMBwp8q/4wrW4QLsF/HYBOSA7TpLKmkVwP3pYQNkEEseW2Rr8Z5Uxc9/h6HX+OG3tuHo+2bINVSihIeBfym6A=="
+  "resolved" "https://registry.npmjs.org/eth-sig-util/-/eth-sig-util-2.5.4.tgz"
+  "version" "2.5.4"
+  dependencies:
+    "ethereumjs-abi" "0.6.8"
+    "ethereumjs-util" "^5.1.1"
+    "tweetnacl" "^1.0.3"
+    "tweetnacl-util" "^0.15.0"
+
 "eth-sig-util@3.0.0":
   "integrity" "sha512-4eFkMOhpGbTxBQ3AMzVf0haUX2uTur7DpWiHzWyTURa28BVJJtOkcb9Ok5TV0YvEPG61DODPW7ZUATbJTslioQ=="
   "resolved" "https://registry.npmjs.org/eth-sig-util/-/eth-sig-util-3.0.0.tgz"
@@ -9520,6 +9585,17 @@
     "ethereumjs-util" "^5.0.0"
     "merkle-patricia-tree" "^2.1.2"
 
+"ethereumjs-block@2.2.0":
+  "integrity" "sha512-Ye+uG/L2wrp364Zihdlr/GfC3ft+zG8PdHcRtsBFNNH1CkOhxOwdB8friBU85n89uRZ9eIMAywCq0F4CwT1wAw=="
+  "resolved" "https://registry.npmjs.org/ethereumjs-block/-/ethereumjs-block-2.2.0.tgz"
+  "version" "2.2.0"
+  dependencies:
+    "async" "^2.0.1"
+    "ethereumjs-common" "^1.1.0"
+    "ethereumjs-tx" "^1.2.2"
+    "ethereumjs-util" "^5.0.0"
+    "merkle-patricia-tree" "^2.1.2"
+
 "ethereumjs-blockchain@^4.0.3":
   "integrity" "sha512-zCxaRMUOzzjvX78DTGiKjA+4h2/sF0OYL1QuPux0DHpyq8XiNoF5GYHtb++GUxVlMsMfZV7AVyzbtgcRdIcEPQ=="
   "resolved" "https://registry.npmjs.org/ethereumjs-blockchain/-/ethereumjs-blockchain-4.0.4.tgz"
@@ -9551,7 +9627,7 @@
   "resolved" "https://registry.npmjs.org/ethereumjs-common/-/ethereumjs-common-1.5.0.tgz"
   "version" "1.5.0"
 
-"ethereumjs-tx@^1.1.1", "ethereumjs-tx@^1.2.0", "ethereumjs-tx@^1.2.2", "ethereumjs-tx@^1.3.3", "ethereumjs-tx@^1.3.5":
+"ethereumjs-tx@^1.1.1", "ethereumjs-tx@^1.2.0", "ethereumjs-tx@^1.2.2", "ethereumjs-tx@^1.3.3", "ethereumjs-tx@^1.3.5", "ethereumjs-tx@1.3.7":
   "integrity" "sha512-wvLMxzt1RPhAQ9Yi3/HKZTn0FZYpnsmQdbKYfUUpi4j1SEIcbkd9tndVjcPrufY3V7j2IebOpC00Zp2P/Ay2kA=="
   "resolved" "https://registry.npmjs.org/ethereumjs-tx/-/ethereumjs-tx-1.3.7.tgz"
   "version" "1.3.7"
@@ -9578,20 +9654,7 @@
     "ethereum-cryptography" "^0.1.3"
     "rlp" "^2.0.0"
 
-"ethereumjs-util@^5.0.0", "ethereumjs-util@^5.0.1", "ethereumjs-util@^5.1.1", "ethereumjs-util@^5.1.2", "ethereumjs-util@^5.1.3", "ethereumjs-util@^5.1.5":
-  "integrity" "sha512-v3kT+7zdyCm1HIqWlLNrHGqHGLpGYIhjeHxQjnDXjLT2FyGJDsd3LWMYUo7pAFRrk86CR3nUJfhC81CCoJNNGQ=="
-  "resolved" "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-5.2.1.tgz"
-  "version" "5.2.1"
-  dependencies:
-    "bn.js" "^4.11.0"
-    "create-hash" "^1.1.2"
-    "elliptic" "^6.5.2"
-    "ethereum-cryptography" "^0.1.3"
-    "ethjs-util" "^0.1.3"
-    "rlp" "^2.0.0"
-    "safe-buffer" "^5.1.1"
-
-"ethereumjs-util@^5.2.0":
+"ethereumjs-util@^5.0.0", "ethereumjs-util@^5.0.1", "ethereumjs-util@^5.1.1", "ethereumjs-util@^5.1.2", "ethereumjs-util@^5.1.3", "ethereumjs-util@^5.1.5", "ethereumjs-util@^5.2.0":
   "integrity" "sha512-v3kT+7zdyCm1HIqWlLNrHGqHGLpGYIhjeHxQjnDXjLT2FyGJDsd3LWMYUo7pAFRrk86CR3nUJfhC81CCoJNNGQ=="
   "resolved" "https://registry.npmjs.org/ethereumjs-util/-/ethereumjs-util-5.2.1.tgz"
   "version" "5.2.1"
@@ -9727,6 +9790,21 @@
     "scryptsy" "^1.2.1"
     "utf8" "^3.0.0"
     "uuid" "^3.3.2"
+
+"ethers@^4.0.27":
+  "integrity" "sha512-kPltTvWiyu+OktYy1IStSO16i2e7cS9D9OxZ81q2UUaiNPVrm/RTcbxamCXF9VUSKzJIdJV68EAIhTEVBalRWg=="
+  "resolved" "https://registry.npmjs.org/ethers/-/ethers-4.0.49.tgz"
+  "version" "4.0.49"
+  dependencies:
+    "aes-js" "3.0.0"
+    "bn.js" "^4.11.9"
+    "elliptic" "6.5.4"
+    "hash.js" "1.1.3"
+    "js-sha3" "0.5.7"
+    "scrypt-js" "2.0.4"
+    "setimmediate" "1.0.4"
+    "uuid" "2.0.1"
+    "xmlhttprequest" "1.8.0"
 
 "ethers@^4", "ethers@^5.6.0":
   "integrity" "sha512-00FP71jt6bW3ndO5DhgH9mLIZhoCGnAKFLu8qig5KmV03ubEChKf2ilB3g6fX512tTYo+tSMDJ5WpCJWdBHkBQ=="
@@ -13547,7 +13625,7 @@
   "resolved" "https://registry.npmjs.org/merge2/-/merge2-1.4.1.tgz"
   "version" "1.4.1"
 
-"merkle-patricia-tree@^2.1.2", "merkle-patricia-tree@^2.3.2":
+"merkle-patricia-tree@^2.1.2", "merkle-patricia-tree@^2.3.2", "merkle-patricia-tree@2.3.2":
   "integrity" "sha512-81PW5m8oz/pz3GvsAwbauj7Y00rqm81Tzad77tHBwU7pIAtN+TJnMSOJhxBKflSVYhptMMb9RskhqHqrSm1V+g=="
   "resolved" "https://registry.npmjs.org/merkle-patricia-tree/-/merkle-patricia-tree-2.3.2.tgz"
   "version" "2.3.2"
@@ -16469,6 +16547,13 @@
     "strip-ansi" "6.0.0"
     "text-table" "0.2.0"
 
+"react-device-detect@^2.1.2":
+  "integrity" "sha512-N42xttwez3ECgu4KpOL2ICesdfoz8NCBfmc1rH9FRYSjH7NmMyANPSrQ3EvAtJyj/6TzJNhrANSO38iXjCB2Ug=="
+  "resolved" "https://registry.npmjs.org/react-device-detect/-/react-device-detect-2.1.2.tgz"
+  "version" "2.1.2"
+  dependencies:
+    "ua-parser-js" "^0.7.30"
+
 "react-devtools-core@^4.23.0":
   "integrity" "sha512-+htKZxLxDN14jhRG3+IXRiJqNSGHUiPYrMtv9e7qlZxcbKeJjVs+C/hd8kZF5rydp3faBwFN6ZpTaZnLA3/ZGA=="
   "resolved" "https://registry.npmjs.org/react-devtools-core/-/react-devtools-core-4.24.3.tgz"
@@ -16477,7 +16562,7 @@
     "shell-quote" "^1.6.1"
     "ws" "^7"
 
-"react-dom@*", "react-dom@^16.8", "react-dom@^16.8.0 || 17.x", "react-dom@^17.0.2", "react-dom@>= 15", "react-dom@>=0.14", "react-dom@>=16.8 || ^17.0.0", "react-dom@>=16.8.6":
+"react-dom@*", "react-dom@^16.8", "react-dom@^16.8.0 || 17.x", "react-dom@^17.0.2", "react-dom@>= 0.14.0 < 18.0.0", "react-dom@>= 15", "react-dom@>=0.14", "react-dom@>=16.8 || ^17.0.0", "react-dom@>=16.8.6":
   "integrity" "sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA=="
   "resolved" "https://registry.npmjs.org/react-dom/-/react-dom-17.0.2.tgz"
   "version" "17.0.2"
@@ -16759,7 +16844,7 @@
   "resolved" "https://registry.npmjs.org/react-svg-radar-chart/-/react-svg-radar-chart-1.3.0.tgz"
   "version" "1.3.0"
 
-"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.8", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@^17.0.2", "react@^18.0.0", "react@>= 15", "react@>= 16", "react@>= 16.8.0", "react@>=0.14", "react@>=15", "react@>=16.13", "react@>=16.8", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@17.0.2":
+"react@*", "react@^0.14.0 || ^15.0.0 || ^16.0.0 || ^17.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.0 || ^17.0.0", "react@^16.0.0 || ^17.0.0", "react@^16.8", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@^17.0.2", "react@^18.0.0", "react@>= 0.14.0 < 18.0.0", "react@>= 15", "react@>= 16", "react@>= 16.8.0", "react@>=0.14", "react@>=15", "react@>=16.13", "react@>=16.8", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@17.0.2":
   "integrity" "sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA=="
   "resolved" "https://registry.npmjs.org/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -16943,6 +17028,16 @@
   "integrity" "sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg=="
   "resolved" "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz"
   "version" "0.11.1"
+
+"regenerator-runtime@^0.11.1":
+  "integrity" "sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg=="
+  "resolved" "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz"
+  "version" "0.11.1"
+
+"regenerator-runtime@^0.12.0":
+  "integrity" "sha512-odxIc1/vDlo4iZcfXqRYFj0vpXFNoGdKMAUieAlFYO6m/nl5e9KR/beGf41z4a1FI+aQgtjhuaSlDxQ0hmkrHg=="
+  "resolved" "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz"
+  "version" "0.12.1"
 
 "regenerator-runtime@^0.13.2", "regenerator-runtime@^0.13.4", "regenerator-runtime@^0.13.7":
   "integrity" "sha512-a54FxoJDIr27pgf7IgeQGxmqUNYrcV338lf/6gH456HZ/PhX+5BcwHXG9ajESmwe6WRO0tAzRUrRmNONWgkrew=="
@@ -19095,6 +19190,11 @@
   "resolved" "https://registry.npmjs.org/tweetnacl/-/tweetnacl-1.0.3.tgz"
   "version" "1.0.3"
 
+"tweetnacl@^1.0.3":
+  "integrity" "sha512-6rt+RN7aOi1nGMyC4Xa5DdYiukl2UWCbcJft7YhxReBGQD7OAM8Pbxw6YMo4r2diNEA8FEmu32YOn9rhaiE5yw=="
+  "resolved" "https://registry.npmjs.org/tweetnacl/-/tweetnacl-1.0.3.tgz"
+  "version" "1.0.3"
+
 "tweetnacl@0.13.2":
   "integrity" "sha1-RTFhdwRp1FzSZsNkBOK8maj6mUQ="
   "resolved" "https://registry.npmjs.org/tweetnacl/-/tweetnacl-0.13.2.tgz"
@@ -19202,6 +19302,11 @@
   "integrity" "sha512-fqLNg8vpvLOD5J/z4B6wpPg4Lvowz1nJ9xdHcCzdUPKcFE/qNCceV2gNZxSJd5vhAZemHr/K/hbzVA0zxB5mkg=="
   "resolved" "https://registry.npmjs.org/u2f-api/-/u2f-api-0.2.7.tgz"
   "version" "0.2.7"
+
+"ua-parser-js@^0.7.30":
+  "integrity" "sha512-qLK/Xe9E2uzmYI3qLeOmI0tEOt+TBBQyUIAh4aAgU05FVYzeZrKUdkAZfBNVGRaHVgV0TDkdEngJSw/SyQchkQ=="
+  "resolved" "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.31.tgz"
+  "version" "0.7.31"
 
 "uglify-es@^3.1.9":
   "integrity" "sha512-r+MU0rfv4L/0eeW3xZrd16t4NZfK8Ld4SWVglYBb7ez5uXFWHuVRs6xCTrf1yirs9a4j4Y27nn7SRfO6v67XsQ=="

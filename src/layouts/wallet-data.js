@@ -13,6 +13,7 @@ import { connector, walletconnect } from "../config/web3/library";
 import { useCallback, useEffect, useState } from "react";
 import useTruncatedAddress from "../hooks/useTruncateAddress";
 import { useTranslation } from 'react-i18next';
+import {isMobile} from 'react-device-detect';
 
 const WalletData = () => {
   const [balance, setBalance] = useState(0);
@@ -23,7 +24,7 @@ const WalletData = () => {
   const isUnsupportedChain = error instanceof UnsupportedChainIdError;
 
   const connect = useCallback(() => {
-    activate(walletconnect);
+    activate(isMobile ? walletconnect : connector);
     localStorage.setItem("previouslyConnected", "true");
   }, [activate]);
 
