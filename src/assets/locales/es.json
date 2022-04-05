@@ -1,0 +1,38 @@
+{
+    "translation": {
+        "bet_header": "¿Apuestas por Par o por Impar?",
+        "bet_btn": "Apostar",
+        "even": "Par",
+        "odd": "Impar",
+        "instructions": "¿Como funciona?",
+        "instructions_step_1": "Elige par o impar y realiza la apuesta, cúando un segundo participe realize su apuesta, aleatoriamente se obtendrá un resultado.",
+        "instructions_step_2": "Si el resultado obtenido es igual al que indicaste te llevas ",
+        "instructions_step_3": "Si ambos participantes seleccionaís el mismo valor que el obtenido te llevas ",
+        "instructions_step_4": "Si no aciertas el valor, no te llevas nada.",
+        "instructions_step_5": "La comision por apuesta es de ",
+        "instructions_step_5_2": "y se obtiene tras obtener el resultado.",
+        "by": "por",
+        "token": "MATIC",
+        "tokens": "MATICs",
+        "english": "Ingles",
+        "spanish": "Español",
+        "connect_metamask": "Conectar Metamask wallet",
+        "network_not_supported": "Debes seleccionar la red de Polygon ;D",
+        "sending_bet_title": "Enviando apuesta...",
+        "sending_bet_body" : "Paciencia, dependiendo de la congestión de la red puede tardar un poco...",
+        "sended_bet_title" : "Apuesta enviada correctamente",
+        "sended_bet_body" : "Si ganas recibiras el importe en tu wallet",
+        "sended_bet_error_title" : "Error",
+        "sended_bet_error_body" : "Tu apuesta se ha revertido y el diseno se ha devuelto a tu wallet",
+        "winner_bet_title" : "Enhorabuena has ganado!! =D",
+        "winner_bet_body" : "Has ganado ",
+        "losse_bet_title" : "Vaya...has perdido =(",
+        "lose_bet_body" : "No te desanimes, la siguiente puede que lo consigas ;D",
+        "draw_bet_title" : "Has empatado",
+        "draw_bet_body" : "Has recuperado ",
+        "statistics": "Estadísticas (Par: {{even}} % - Impar: {{odd}} %)"
+        
+
+        
+    }
+}
