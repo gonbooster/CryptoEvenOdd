@@ -125,12 +125,12 @@ const Home = () => {
           >
             <RadioGroup onChange={setValue} value={value}>
               <Radio value='0'>
-              <Image src="/images/even.jpg" style={{width: 200, height: 200}}></Image>
+              <Image src="./images/even.jpg" style={{width: 200, height: 200}}></Image>
               <Text align={'center'} >
             {t('even')}</Text>
               </Radio>
               <Radio value='1' paddingLeft={10}>
-              <Image src="/images/odd.jpg" style={{width: 200, height: 200}}></Image>
+              <Image src="./images/odd.jpg" style={{width: 200, height: 200}}></Image>
               <Text align={'center'} >
             {t('odd')}</Text>
               </Radio>
