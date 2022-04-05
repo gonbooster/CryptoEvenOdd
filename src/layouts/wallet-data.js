@@ -9,7 +9,7 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
-import { connector } from "../config/web3/library";
+import { connector, walletconnect } from "../config/web3/library";
 import { useCallback, useEffect, useState } from "react";
 import useTruncatedAddress from "../hooks/useTruncateAddress";
 import { useTranslation } from 'react-i18next';
@@ -23,7 +23,7 @@ const WalletData = () => {
   const isUnsupportedChain = error instanceof UnsupportedChainIdError;
 
   const connect = useCallback(() => {
-    activate(connector);
+    activate(walletconnect);
     localStorage.setItem("previouslyConnected", "true");
   }, [activate]);
 

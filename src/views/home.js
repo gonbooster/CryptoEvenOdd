@@ -14,6 +14,7 @@ import useContract from "../hooks/useContract";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 
+
 const Home = () => {
   const {account, library } = useWeb3React();
   const [betCost, setBetCost] = useState(0);
@@ -124,12 +125,12 @@ const Home = () => {
               align={'center'} 
           >
             <RadioGroup onChange={setValue} value={value}>
-              <Radio value='0'>
+              <Radio value='0' padding={10}>
               <Image src="./images/even.jpg" style={{width: 200, height: 200}}></Image>
               <Text align={'center'} >
             {t('even')}</Text>
               </Radio>
-              <Radio value='1' paddingLeft={10}>
+              <Radio value='1' padding={10}>
               <Image src="./images/odd.jpg" style={{width: 200, height: 200}}></Image>
               <Text align={'center'} >
             {t('odd')}</Text>

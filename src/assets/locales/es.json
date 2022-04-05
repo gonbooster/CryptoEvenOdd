@@ -16,7 +16,7 @@
         "tokens": "MATICs",
         "english": "Ingles",
         "spanish": "Español",
-        "connect_metamask": "Conectar Metamask wallet",
+        "connect_metamask": "Conectar wallet",
         "network_not_supported": "Debes seleccionar la red de Polygon ;D",
         "sending_bet_title": "Enviando apuesta...",
         "sending_bet_body" : "Paciencia, dependiendo de la congestión de la red puede tardar un poco...",
