@@ -13,6 +13,7 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NavLink from "./nav-link";
 import WalletData from "./wallet-data";
 import Language from "./language";
+import { t } from "i18next";
 
 const Links = [
   {
@@ -56,9 +57,21 @@ const MainLayout = ({ children }) => {
             <Flex alignItems="center">
               <Image src="" width="80px" />
               <Heading size="md" color="purple" mt={0.2} ml={1}>
-              EvenOdd Bet
+              EvenOdd
               </Heading>
             </Flex>
+            <HStack
+              as={"nav"}
+              spacing={4}
+              display={{ base: "none", md: "flex" }}
+            >
+          <a
+            href="https://polygonscan.com/address/0x5FE021EA216C2B0da55E705A0b87fFa20ddA76dD"
+            target='_blank'
+          >
+          {t('contract')}
+          </a>
+            </HStack>
           </HStack>
           <Language />
           <WalletData />
