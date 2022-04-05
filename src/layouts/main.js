@@ -12,7 +12,6 @@ import {
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NavLink from "./nav-link";
 import WalletData from "./wallet-data";
-import Language from "./language";
 import { t } from "i18next";
 
 const Links = [
@@ -55,7 +54,7 @@ const MainLayout = ({ children }) => {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Flex alignItems="center">
-              <Image src="" width="80px" />
+              <Image src="./favicon.png" width="50px" />
               <Heading size="md" color="purple" mt={0.2} ml={1}>
               EvenOdd
               </Heading>
@@ -73,18 +72,18 @@ const MainLayout = ({ children }) => {
           </a>
             </HStack>
           </HStack>
-          <Language />
           <WalletData />
         </Flex>
 
         {isOpen ? (
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
-              {Links.map(({ name, to }) => (
-                <NavLink key={name} to={to}>
-                  {name}
-                </NavLink>
-              ))}
+            <a
+            href="https://polygonscan.com/address/0x5FE021EA216C2B0da55E705A0b87fFa20ddA76dD"
+            target='_blank'
+          >
+          {t('contract')}
+          </a>
             </Stack>
           </Box>
         ) : null}

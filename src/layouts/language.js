@@ -7,21 +7,12 @@ import {
   
   const Language = () => {
     const { t, i18n } = useTranslation();
-
-    const handleSelected = (e) => {
-        const { target: { value } } = e;
-        i18n.changeLanguage(value);
-      }
- 
-
-    return (
-        <Select onChange={handleSelected} 
-        size={"sm"} 
-        maxWidth={"150px"}>
-        <option value='en' defaultChecked='true'>{t('english')}</option>
-        <option value='es'>{t('spanish')}</option>
-      </Select>
-    );
+    var userLang = navigator.languages
+    ? navigator.languages[0]
+    : (navigator.language || navigator.userLanguage)
+console.log(userLang.split("-")[0])
+    i18n.changeLanguage(userLang.split("-")[0]);
+    
   };
   
   export default Language;

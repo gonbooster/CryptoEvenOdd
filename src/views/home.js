@@ -14,7 +14,6 @@ import useContract from "../hooks/useContract";
 import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
 
-
 const Home = () => {
   const {account, library } = useWeb3React();
   const [betCost, setBetCost] = useState(0);
