@@ -1,6 +1,6 @@
 {
   "name": "goshtbattle-interface",
-  "homepage": "https://gonbooster.github.io/CryptoLottery",
+  "homepage": "https://gonbooster.github.io/CryptoEvenOdd",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
