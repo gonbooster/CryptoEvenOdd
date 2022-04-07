@@ -1,2 +1,0 @@
-(this["webpackJsonpgoshtbattle-interface"]=this["webpackJsonpgoshtbattle-interface"]||[]).push([[6],{507:function(t,n){},520:function(t,n){},522:function(t,n){}}]);
-//# sourceMappingURL=6.f2ba3e8b.chunk.js.map
