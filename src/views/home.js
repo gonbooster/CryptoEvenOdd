@@ -100,7 +100,7 @@ const Home = () => {
       else{
         toast({
           title: 'Error',
-          description: ex,
+          description: String(ex),
           status: "error",
         });
       }
