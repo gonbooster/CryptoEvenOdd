@@ -98,7 +98,7 @@ const Home = () => {
         });
       }
       else{
-        const message = "error";
+        let message = "error";
         if(isMobile){
           const reason = String(ex).split('reverted:')[1];
           message = reason.split('"')[0];
