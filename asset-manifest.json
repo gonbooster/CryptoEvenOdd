@@ -2,14 +2,14 @@
   "files": {
     "static/js/0.e9dbf0ff.chunk.js": "/CryptoEvenOdd/static/js/0.e9dbf0ff.chunk.js",
     "static/js/0.e9dbf0ff.chunk.js.map": "/CryptoEvenOdd/static/js/0.e9dbf0ff.chunk.js.map",
-    "main.js": "/CryptoEvenOdd/static/js/main.555b3d73.chunk.js",
-    "main.js.map": "/CryptoEvenOdd/static/js/main.555b3d73.chunk.js.map",
-    "runtime-main.js": "/CryptoEvenOdd/static/js/runtime-main.c3d11690.js",
-    "runtime-main.js.map": "/CryptoEvenOdd/static/js/runtime-main.c3d11690.js.map",
-    "static/js/3.31212578.chunk.js": "/CryptoEvenOdd/static/js/3.31212578.chunk.js",
-    "static/js/3.31212578.chunk.js.map": "/CryptoEvenOdd/static/js/3.31212578.chunk.js.map",
-    "static/js/4.920508a4.chunk.js": "/CryptoEvenOdd/static/js/4.920508a4.chunk.js",
-    "static/js/4.920508a4.chunk.js.map": "/CryptoEvenOdd/static/js/4.920508a4.chunk.js.map",
+    "main.js": "/CryptoEvenOdd/static/js/main.c66c05f7.chunk.js",
+    "main.js.map": "/CryptoEvenOdd/static/js/main.c66c05f7.chunk.js.map",
+    "runtime-main.js": "/CryptoEvenOdd/static/js/runtime-main.16836d9b.js",
+    "runtime-main.js.map": "/CryptoEvenOdd/static/js/runtime-main.16836d9b.js.map",
+    "static/js/3.5c1e51e8.chunk.js": "/CryptoEvenOdd/static/js/3.5c1e51e8.chunk.js",
+    "static/js/3.5c1e51e8.chunk.js.map": "/CryptoEvenOdd/static/js/3.5c1e51e8.chunk.js.map",
+    "static/js/4.b24138ee.chunk.js": "/CryptoEvenOdd/static/js/4.b24138ee.chunk.js",
+    "static/js/4.b24138ee.chunk.js.map": "/CryptoEvenOdd/static/js/4.b24138ee.chunk.js.map",
     "static/js/5.19898509.chunk.js": "/CryptoEvenOdd/static/js/5.19898509.chunk.js",
     "static/js/5.19898509.chunk.js.map": "/CryptoEvenOdd/static/js/5.19898509.chunk.js.map",
     "static/js/6.0f50c42b.chunk.js": "/CryptoEvenOdd/static/js/6.0f50c42b.chunk.js",
@@ -18,13 +18,13 @@
     "static/js/7.075adcdd.chunk.js.map": "/CryptoEvenOdd/static/js/7.075adcdd.chunk.js.map",
     "index.html": "/CryptoEvenOdd/index.html",
     "static/js/0.e9dbf0ff.chunk.js.LICENSE.txt": "/CryptoEvenOdd/static/js/0.e9dbf0ff.chunk.js.LICENSE.txt",
-    "static/js/3.31212578.chunk.js.LICENSE.txt": "/CryptoEvenOdd/static/js/3.31212578.chunk.js.LICENSE.txt",
-    "static/js/4.920508a4.chunk.js.LICENSE.txt": "/CryptoEvenOdd/static/js/4.920508a4.chunk.js.LICENSE.txt",
+    "static/js/3.5c1e51e8.chunk.js.LICENSE.txt": "/CryptoEvenOdd/static/js/3.5c1e51e8.chunk.js.LICENSE.txt",
+    "static/js/4.b24138ee.chunk.js.LICENSE.txt": "/CryptoEvenOdd/static/js/4.b24138ee.chunk.js.LICENSE.txt",
     "static/js/5.19898509.chunk.js.LICENSE.txt": "/CryptoEvenOdd/static/js/5.19898509.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.c3d11690.js",
-    "static/js/3.31212578.chunk.js",
-    "static/js/main.555b3d73.chunk.js"
+    "static/js/runtime-main.16836d9b.js",
+    "static/js/3.5c1e51e8.chunk.js",
+    "static/js/main.c66c05f7.chunk.js"
   ]
 }
