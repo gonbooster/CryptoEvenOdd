@@ -98,19 +98,9 @@ const Home = () => {
         });
       }
       else{
-        let message = ex;
-        if(isMobile){
-          const reason = String(ex).split('reverted:')[1];
-          message = reason.split('"')[0];
-
-        }
-        else{
-          const reason = String(ex).split('reason=')[1];
-          message = reason.split('"')[1];
-        }
         toast({
           title: 'Error',
-          description: message,
+          description: ex,
           status: "error",
         });
       }
