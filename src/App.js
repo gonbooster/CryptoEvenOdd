@@ -9,7 +9,6 @@ function App() {
   var userLang = navigator.languages
   ? navigator.languages[0]
   : (navigator.language || navigator.userLanguage)
-console.log(userLang.split("-")[0])
   i18n.changeLanguage(userLang.split("-")[0]);
 
   return (

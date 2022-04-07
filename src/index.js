@@ -4,8 +4,15 @@ import App from "./App";
 import { HashRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Web3ReactProvider } from "@web3-react/core";
-import { getLibrary } from "./config/web3/library";
+import { Web3Provider } from '@ethersproject/providers';
 import "./i18n"
+
+const getLibrary = (provider) => {
+  const library = new Web3Provider(provider, 'any');
+  library.pollingInterval = 15000;
+  return library;
+};
+
 
 ReactDOM.render(
   <React.StrictMode>

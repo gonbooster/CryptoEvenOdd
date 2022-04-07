@@ -1,6 +1,6 @@
+import { useCallback, useEffect, useState } from "react";
 import {
   Stack,
-  Flex,
   Heading,
   Text,
   Button,
@@ -10,12 +10,14 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { useWeb3React } from "@web3-react/core";
-import useContract from "../hooks/useContract";
-import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from 'react-i18next';
+import useContract from "../hooks/useContract";
+import { ethers } from "ethers";
+import {isMobile} from 'react-device-detect';
 
 const Home = () => {
-  const {account, library } = useWeb3React();
+  const {account, library} = useWeb3React();
+  const [result, setResult] = useState(0);
   const [betCost, setBetCost] = useState(0);
   const [evenCount, setEvenCount] = useState(0);
   const [oddCount, setOddCount] = useState(0);
@@ -24,13 +26,14 @@ const Home = () => {
   const contract = useContract();
   const toast = useToast();
   const { t  } = useTranslation();
- 
 
-  const getContractData = useCallback(async () => {
+
+  const getContractData = async () => {
     if (contract) {
-      const betCost = await contract.methods.betCost().call();
-      const evenCount = await contract.methods.evenCount().call();
-      const oddCount = await contract.methods.oddCount().call();
+    
+      const betCost = await contract.betCost();    
+      const evenCount = await contract.evenCount();
+      const oddCount = await contract.oddCount();
       if(Number(oddCount)+Number(evenCount) == 0){
         setEvenCount(Number(1));
         setOddCount(Number(1));
@@ -41,59 +44,80 @@ const Home = () => {
       }
       setBetCost(betCost);
     }
-  }, [contract, account]);
+  };
+  
+  
 
   useEffect(() => {
     getContractData();
-  }, [isBetting]);
-
-  getContractData();
+  }, [contract, account, result]);
   
   const makeBetBtn = async() => {
-    
-    setIsBetting(true);
-    await contract.methods
-    .makeBet(Number(value))
-    .send({
-      from: account,
-      value: betCost
-    })
-    .on("transactionHash", (txHash) => {
-      toast({
-        title: t('sending_bet_title'),
-        description: t('sending_bet_body'),
-        status: "info",
-      });
-    })
-    .on("receipt", (receipt) => {
-      setIsBetting(false);
-      console.log(receipt)
-      if(receipt.events.Winner){
+
+    try {
+      const overrides = {
+        gasLimit: 230000,
+        from: account,
+        value: betCost
+      };
+      setIsBetting(true);
+      await contract.callStatic.makeBet(Number(value), overrides);
+      let transaction = await contract.makeBet(Number(value), overrides);
+      await transaction.wait().then((receipt) =>{
+        setIsBetting(false);
+        const winnerEvents = receipt.events.find(e => e.event == "Winner");
+        if(winnerEvents){
+          const result = winnerEvents.args.result;
+          setResult(result)
+          const award = winnerEvents.args.award;
+          toast({
+            title: t(result == 2 ? 'winner_bet_title' : (result == 1 ? 'losse_bet_title' : 'draw_bet_title')),
+            description: result == 2 ? t('winner_bet_body', {value: ethers.BigNumber.from(award)}) : (result == 1 ? 'lose_bet_body' : 'draw_bet_body', {value: ethers.BigNumber.from(award)})+t('tokens'),
+            status: result == 2 ? "success" :(result == 1 ?  "error" : "warning"),
+          });
+        }
+        else{
+          toast({
+            title: t('sended_bet_title'),
+            description: t('sended_bet_body'),
+            status: "info",
+          });
+        }
         
-        const returnValues = receipt.events.Winner.returnValues;
-        const result = receipt.events.Winner.returnValues.result;
+      });
+
+		} catch (ex) {
+      setIsBetting(false);
+      console.log(ex)
+      if(ex.code == 4001){
+        console.log(ex);
         toast({
-          title: t(result == 2 ? 'winner_bet_title' : (result == 1 ? 'losse_bet_title' : 'draw_bet_title')),
-          description: result == 2 ? t('winner_bet_body', {value: library.utils.fromWei(returnValues.award, "ether")}) : (result == 1 ? 'lose_bet_body' : 'draw_bet_body', {value: library.utils.fromWei(returnValues.award, "ether")})+t('tokens'),
-          status: result == 2 ? "success" :(result == 1 ?  "error" : "warning"),
+          title: t('sended_bet_error_title'),
+          description: t('sended_bet_error_body'),
+          status: "error",
         });
       }
       else{
+        const message = "error";
+        if(isMobile){
+          const reason = String(ex).split('reverted:')[1];
+          message = reason.split('"')[0];
+
+        }
+        else{
+          const reason = String(ex).split('reason=')[1];
+          message = reason.split('"')[1];
+        }
         toast({
-          title: t('sended_bet_title'),
-          description: t('sended_bet_body'),
-          status: "info",
+          title: 'Error',
+          description: message,
+          status: "error",
         });
       }
-    })
-    .on("error", (error) => {
-      setIsBetting(false);
-      toast({
-        title: t('sended_bet_error_title'),
-        description: t('sended_bet_error_body'),
-        status: "error",
-      });
-    });
+      
+		}
+
+
   };
   return (
     <Stack
@@ -105,7 +129,7 @@ const Home = () => {
 
       <Stack flex={3} spacing={{ base: 5, md: 10 }}>
         <Text align={'center'} >
-              <strong> {t('statistics',{even: (evenCount * 100) /(evenCount+oddCount), odd: (oddCount * 100) /(evenCount+oddCount)})} </strong>
+              <strong> {t('statistics',{even: ((evenCount * 100) /(evenCount+oddCount)).toFixed(2), odd: ((oddCount * 100) /(evenCount+oddCount)).toFixed(2)})} </strong>
         </Text>
         <Heading
           lineHeight={1.1}

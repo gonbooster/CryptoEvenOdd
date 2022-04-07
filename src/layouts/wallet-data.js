@@ -1,5 +1,6 @@
 import {
   Flex,
+  useDisclosure,
   Button,
   Tag,
   TagLabel,
@@ -9,78 +10,97 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 import { Link } from "react-router-dom";
 import { UnsupportedChainIdError, useWeb3React } from "@web3-react/core";
-import { connector, walletconnect } from "../config/web3/library";
+import { connectors, resetWalletConnector } from "../config/web3/connectors";
 import { useCallback, useEffect, useState } from "react";
 import useTruncatedAddress from "../hooks/useTruncateAddress";
 import { useTranslation } from 'react-i18next';
-import {isMobile} from 'react-device-detect';
+import SelectWalletModal from "./modal";
 
 const WalletData = () => {
   const [balance, setBalance] = useState(0);
-  const { active, activate, deactivate, account, error, library } =
-    useWeb3React();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    library,
+    chainId,
+    account,
+    activate,
+    deactivate,
+    error,
+    active
+  } = useWeb3React();
   const { t } = useTranslation();
 
   const isUnsupportedChain = error instanceof UnsupportedChainIdError;
 
-  const connect = useCallback(() => {
-    activate(isMobile ? walletconnect : connector);
-    localStorage.setItem("previouslyConnected", "true");
-  }, [activate]);
-
   const disconnect = () => {
+    window.localStorage.setItem("provider", undefined);
     deactivate();
-    localStorage.removeItem("previouslyConnected");
   };
 
+
   const getBalance = useCallback(async () => {
-    const toSet = await library.eth.getBalance(account);
+    const toSet = await library.provider.request({
+      method: "eth_getBalance",
+      params: [account,'latest']
+    });
     setBalance((toSet / 1e18).toFixed(4));
-  }, [library?.eth, account]);
+  }, [library?.provider, account]);
 
   useEffect(() => {
     if (active) getBalance();
   }, [active, getBalance]);
 
-  useEffect(() => {
-    if (localStorage.getItem("previouslyConnected") === "true") connect();
-  }, [connect]);
 
+  useEffect(async () => {
+    
+    const providerText = window.localStorage.getItem("provider");
+    if (providerText == 'injected'){
+			await activate(connectors[providerText]);
+    } 
+    else if(providerText == 'walletconnect'){
+			resetWalletConnector(connectors[providerText]);
+			await activate(connectors[providerText]);
+    }
+  }, []);
+  
   const truncatedAddress = useTruncatedAddress(account);
 
   return (
-    <Flex alignItems={"center"}>
-      {active ? (
-        <Tag colorScheme="green" borderRadius="full">
-          <TagLabel>
-            {truncatedAddress}
-          </TagLabel>
-          <Badge
-            d={{
-              base: "none",
-              md: "block",
-            }}
-            variant="solid"
-            fontSize="0.8rem"
-            ml={1}
+    <>
+      <Flex alignItems={"center"}>
+        {active ? (
+          <Tag colorScheme="green" borderRadius="full">
+            <TagLabel>
+              {truncatedAddress}
+            </TagLabel>
+            <Badge
+              d={{
+                base: "none",
+                md: "block",
+              }}
+              variant="solid"
+              fontSize="0.8rem"
+              ml={1}
+            >
+              {balance} Ξ
+            </Badge>
+            <TagCloseButton onClick={disconnect} />
+          </Tag>
+        ) : (
+          <Button
+            variant={"solid"}
+            colorScheme={"green"}
+            size={"sm"}
+            leftIcon={<AddIcon />}
+            onClick={onOpen}
+            disabled={isUnsupportedChain}
           >
-            ~{balance} Ξ
-          </Badge>
-          <TagCloseButton onClick={disconnect} />
-        </Tag>
-      ) : (
-        <Button
-          variant={"solid"}
-          colorScheme={"green"}
-          size={"sm"}
-          leftIcon={<AddIcon />}
-          onClick={connect}
-          disabled={isUnsupportedChain}
-        >
-          {isUnsupportedChain ? t('network_not_supported') : t('connect_metamask')}
-        </Button>
-      )}
-    </Flex>
+            {isUnsupportedChain ? t('network_not_supported') : t('connect_metamask')}
+          </Button>
+        )}
+      </Flex>
+      <SelectWalletModal isOpen={isOpen} closeModal={onClose} />
+    </>
   );
 };
 

@@ -1,6 +1,7 @@
 const artifact = {
   address: {
     137: "0x5FE021EA216C2B0da55E705A0b87fFa20ddA76dD",
+    4: "0x9072234fCF3654e39a064ED0960c0Bb5D867D8cb",
   },
   abi:[
     {

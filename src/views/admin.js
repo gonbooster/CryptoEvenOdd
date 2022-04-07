@@ -1,43 +1,32 @@
 import {
   Stack,
-  Flex,
-  Heading,
-  Text,
   Button,
-  Image,
-  Badge,
-  useToast,
 } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
 import { useWeb3React } from "@web3-react/core";
 import useContract from "../hooks/useContract";
-import { useCallback, useEffect, useState } from "react";
+import { ethers } from "ethers";
 
 const Admin = () => {;
   const { active, account, library } = useWeb3React();
   const contract = useContract();
 
 
-  const setBetCost = () => {
+  const setBetCost = async() => {
     
     const cost = prompt("Ingresa el costo en ethers: ");
     if(!cost){
       return false;
     }
-    contract.methods
-    .setBetCost(library.utils.toWei(cost, "ether"))
-      .send({
+    try {
+      const overrides = {
+        gasLimit: 230000,
         from: account,
-      })
-      .on("transactionHash", (txHash) => {
-        console.log(txHash)
-      })
-      .on("receipt", () => {
-        console.log("ok")
-      })
-      .on("error", (error) => {
-        console.log(error.message)
-      });
+      };
+      const transaction = await contract
+      .setBetCost(ethers.BigNumber.from(cost),overrides);
+    } catch (ex) {
+      console.log(ex);
+    }    
   };
   
 
