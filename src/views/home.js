@@ -72,7 +72,7 @@ const Home = () => {
           const award = winnerEvents.args.award;
           toast({
             title: t(result == 2 ? 'winner_bet_title' : (result == 1 ? 'losse_bet_title' : 'draw_bet_title')),
-            description: result == 2 ? t('winner_bet_body', {value: ethers.BigNumber.from(award)}) : (result == 1 ? 'lose_bet_body' : 'draw_bet_body', {value: ethers.BigNumber.from(award)})+t('tokens'),
+            description: result == 2 ? t('winner_bet_body', {value: ethers.BigNumber.from(award)}) : t(result == 1 ? 'lose_bet_body' : 'draw_bet_body', {value: ethers.BigNumber.from(award)})+t('tokens'),
             status: result == 2 ? "success" :(result == 1 ?  "error" : "warning"),
           });
         }
