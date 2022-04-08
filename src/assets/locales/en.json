@@ -7,7 +7,7 @@
         "instructions": "How does it work?",
         "instructions_step_1": "Choose even or odd and place the bet, when a second participant places his bet, a random result will be obtained.",
         "instructions_step_2": "If the result obtained is the same as the one you indicated, you get ",
-        "instructions_step_3": "If both participants have selected the same value as the one obtained, you get ",
+        "instructions_step_3": "If both participants have selected the same value, you get ",
         "instructions_step_4": "If you do not guess the value, you do not take anything.",
         "instructions_step_5": "The commission per bet is",
         "instructions_step_5_2": "and is obtained after obtaining the result.",
