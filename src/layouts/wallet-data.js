@@ -33,6 +33,10 @@ const WalletData = () => {
   const isUnsupportedChain = error instanceof UnsupportedChainIdError;
 
   const disconnect = () => {
+    const providerText = window.localStorage.getItem("provider");
+   if(providerText == 'walletconnect'){
+     resetWalletConnector();
+    }
     window.localStorage.setItem("provider", undefined);
     deactivate();
   };
@@ -44,6 +48,7 @@ const WalletData = () => {
       params: [account,'latest']
     });
     setBalance((toSet / 1e18).toFixed(4));
+    
   }, [library?.provider, account]);
 
   useEffect(() => {
@@ -52,14 +57,11 @@ const WalletData = () => {
 
 
   useEffect(async () => {
-    
     const providerText = window.localStorage.getItem("provider");
-    if (providerText == 'injected'){
-			await activate(connectors[providerText]);
-    } 
-    else if(providerText == 'walletconnect'){
-			resetWalletConnector(connectors[providerText]);
-			await activate(connectors[providerText]);
+    if (providerText) {
+      activate(connectors[providerText], async (error) => {
+        console.log(error)
+      });
     }
   }, []);
   

@@ -23,10 +23,12 @@ const walletlink = new WalletLinkConnector({
 	supportedChainIds: [ 1, 4 ]
 });
 
-export function resetWalletConnector(connector) {
-	if (connector && connector instanceof WalletConnectConnector) {
-		connector.walletConnectProvider = undefined;
-	}
+export function resetWalletConnector() {
+	try{
+		walletconnect.walletConnectProvider = undefined;
+	} catch (error) {
+    	console.log(error);
+    }
 }
 
 export const connectors = {

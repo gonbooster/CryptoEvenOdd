@@ -13,10 +13,11 @@ import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from 'react-i18next';
 import useContract from "../hooks/useContract";
 import { ethers } from "ethers";
-import {isMobile} from 'react-device-detect';
 
 const Home = () => {
-  const {account, library} = useWeb3React();
+  const {account, library,
+    error,
+    active} = useWeb3React();
   const [result, setResult] = useState(0);
   const [betCost, setBetCost] = useState(0);
   const [evenCount, setEvenCount] = useState(0);
@@ -30,7 +31,6 @@ const Home = () => {
 
   const getContractData = async () => {
     if (contract) {
-    
       const betCost = await contract.betCost();    
       const evenCount = await contract.evenCount();
       const oddCount = await contract.oddCount();
@@ -45,12 +45,10 @@ const Home = () => {
       setBetCost(betCost);
     }
   };
-  
-  
 
   useEffect(() => {
     getContractData();
-  }, [contract, account, result]);
+  }, [result, active]);
   
   const makeBetBtn = async() => {
 

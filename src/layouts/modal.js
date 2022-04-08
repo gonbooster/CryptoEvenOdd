@@ -12,14 +12,25 @@ import {
   } from "@chakra-ui/react";
   import { Image } from "@chakra-ui/react";
   import { useWeb3React } from "@web3-react/core";
-  import { connectors } from "../config/web3/connectors";
+  import { connectors, resetWalletConnector } from "../config/web3/connectors";
   
   export default function SelectWalletModal({ isOpen, closeModal }) {
-    const { activate } = useWeb3React();
-  
-    const setProvider = (type) => {
+    const { activate, deactivate } = useWeb3React();
+
+    const connect = async (connector,type) => {
+
+      await activate(connector, async (error) => {
+        console.log(error); 
+      });
       window.localStorage.setItem("provider", type);
+      closeModal();
     };
+
+    const test =(error) => {
+
+      console.log(error)
+
+    }
   
     return (
       <Modal isOpen={isOpen} onClose={closeModal} isCentered>
@@ -35,10 +46,7 @@ import {
             <VStack>
               <Button
                 variant="outline"
-                onClick={() => {
-                  activate(connectors.walletConnect);
-                  setProvider("injected");
-                  closeModal();
+                onClick={() => {connect(connectors.walletConnect,"walletConnect")
                 }}
                 w="100%"
               >
@@ -56,9 +64,7 @@ import {
               <Button
                 variant="outline"
                 onClick={() => {
-                  activate(connectors.injected);
-                  setProvider("injected");
-                  closeModal();
+                  connect(connectors.injected, "injected");
                 }}
                 w="100%"
               >
