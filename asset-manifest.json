@@ -2,8 +2,8 @@
   "files": {
     "static/js/0.4dfc8ea3.chunk.js": "/CryptoEvenOdd/static/js/0.4dfc8ea3.chunk.js",
     "static/js/0.4dfc8ea3.chunk.js.map": "/CryptoEvenOdd/static/js/0.4dfc8ea3.chunk.js.map",
-    "main.js": "/CryptoEvenOdd/static/js/main.1ba01a92.chunk.js",
-    "main.js.map": "/CryptoEvenOdd/static/js/main.1ba01a92.chunk.js.map",
+    "main.js": "/CryptoEvenOdd/static/js/main.24cdc936.chunk.js",
+    "main.js.map": "/CryptoEvenOdd/static/js/main.24cdc936.chunk.js.map",
     "runtime-main.js": "/CryptoEvenOdd/static/js/runtime-main.fbb47a99.js",
     "runtime-main.js.map": "/CryptoEvenOdd/static/js/runtime-main.fbb47a99.js.map",
     "static/js/3.5511c0a5.chunk.js": "/CryptoEvenOdd/static/js/3.5511c0a5.chunk.js",
@@ -25,6 +25,6 @@
   "entrypoints": [
     "static/js/runtime-main.fbb47a99.js",
     "static/js/3.5511c0a5.chunk.js",
-    "static/js/main.1ba01a92.chunk.js"
+    "static/js/main.24cdc936.chunk.js"
   ]
 }
