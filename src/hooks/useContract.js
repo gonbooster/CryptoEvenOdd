@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { useWeb3React } from "@web3-react/core";
-import artifact from "../config/web3/contract";
 import { Contract } from '@ethersproject/contracts';
+import artifact from "../config/web3/contract";
 const { address, abi } = artifact;
 
 const useContract = () => {

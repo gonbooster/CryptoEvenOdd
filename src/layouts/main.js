@@ -13,6 +13,9 @@ import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import NavLink from "./nav-link";
 import WalletData from "./wallet-data";
 import { t } from "i18next";
+import artifact from "../config/web3/contract";
+import { useWeb3React } from "@web3-react/core";
+const { address } = artifact;
 
 const Links = [
   {
@@ -23,6 +26,7 @@ const Links = [
 
 const MainLayout = ({ children }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {chainId, active} = useWeb3React();
 
   return (
     <Flex minH="100vh" direction="column">
@@ -54,7 +58,7 @@ const MainLayout = ({ children }) => {
           />
           <HStack spacing={8} alignItems={"center"}>
             <Flex alignItems="center">
-              <Image src="./favicon.png" width="50px" />
+              <Image src={process.env.PUBLIC_URL + '/favicon.png'} width="50px" />
               <Heading size="md" color="purple" mt={0.2} ml={1}>
               EvenOdd
               </Heading>
@@ -65,7 +69,7 @@ const MainLayout = ({ children }) => {
               display={{ base: "none", md: "flex" }}
             >
           <a
-            href="https://polygonscan.com/address/0x5FE021EA216C2B0da55E705A0b87fFa20ddA76dD"
+            href={'https://polygonscan.com/address/'+address[chainId]}
             target='_blank'
           >
           {t('contract')}
@@ -79,7 +83,7 @@ const MainLayout = ({ children }) => {
           <Box pb={4} display={{ md: "none" }}>
             <Stack as={"nav"} spacing={4}>
             <a
-            href="https://polygonscan.com/address/0x5FE021EA216C2B0da55E705A0b87fFa20ddA76dD"
+            href={'https://polygonscan.com/address/'+address[chainId]}
             target='_blank'
           >
           {t('contract')}

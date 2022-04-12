@@ -13,15 +13,15 @@ import { useWeb3React } from "@web3-react/core";
 import { useTranslation } from 'react-i18next';
 import useContract from "../hooks/useContract";
 import { ethers } from "ethers";
+import { CHAINS } from "../utils/constants";
 
 const Home = () => {
-  const {account, library,
-    error,
-    active} = useWeb3React();
-  const [result, setResult] = useState(0);
+  const {account, chainId, active} = useWeb3React();
   const [betCost, setBetCost] = useState(0);
   const [evenCount, setEvenCount] = useState(0);
   const [oddCount, setOddCount] = useState(0);
+  const [price, setPrice] = useState(null);
+  const [tokenSymbol, setTokenSymbol] = useState('');
   const [value, setValue] = useState('0');
   const [isBetting, setIsBetting] = useState(false);
   const contract = useContract();
@@ -30,6 +30,7 @@ const Home = () => {
 
 
   const getContractData = async () => {
+
     if (contract) {
       const betCost = await contract.betCost();    
       const evenCount = await contract.evenCount();
@@ -45,48 +46,85 @@ const Home = () => {
       setBetCost(betCost);
     }
   };
+  
+
+  useEffect(() => {
+    if(chainId){
+      setTokenSymbol(CHAINS[chainId].symbol)
+      fetch("https://api.coingecko.com/api/v3/simple/price?ids="+CHAINS[chainId].id+"&vs_currencies="+t('badge'))
+      .then((res) => res.json())
+      .then((data) => {      
+        setPrice(data[CHAINS[chainId].id][t('badge')]);       
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    } 
+  }, [chainId]);
+
 
   useEffect(() => {
     getContractData();
-  }, [result, active]);
+  }, [ active]);
+const eventName = 'Resolve';
+const EventToast = function(_title, _message, _status) {
+  const title = _title;
+  const message = _message;
+  const status = _status;
+  return { title, message, status };
+};
+const losse = EventToast('losse_bet_title', 'losse_bet_title','error');
+const win = EventToast('winner_bet_title', 'winner_bet_body','success');
+const draw = EventToast('draw_bet_title', 'draw_bet_body','warning');
+const types = [losse,win,draw];
+
+const handler =  (address, r, a) => {
+  console.log('a')
+    let award = ethers.utils.formatEther(a); 
+    getContractData();
+    toast({
+      title: t(types[r].title),
+      description: t(types[r].message, award) + tokenSymbol,
+      status: t(types[r].status),
+    });
+  }
+
+
+  useEffect(() => {
+    if(contract)
+    {
+      let filter = contract.filters.Resolve(account)
+      contract.once(filter, handler)
+
+      return () => {
+        contract.removeListener(filter, handler)
+       }
+    } 
+  }, [contract])
   
   const makeBetBtn = async() => {
 
     try {
       const overrides = {
-        gasLimit: 230000,
         from: account,
         value: betCost
       };
       setIsBetting(true);
-      await contract.callStatic.makeBet(Number(value), overrides);
+      await contract.callStatic.makeBet(Number(value), overrides); // si no usamos esto, no sabremos si existe un error por require en el smart contract
       let transaction = await contract.makeBet(Number(value), overrides);
-      await transaction.wait().then((receipt) =>{
+      await transaction.wait().then(() =>{
         setIsBetting(false);
-        const winnerEvents = receipt.events.find(e => e.event == "Winner");
-        if(winnerEvents){
-          const result = winnerEvents.args.result;
-          setResult(result)
-          const award = winnerEvents.args.award;
-          toast({
-            title: t(result == 2 ? 'winner_bet_title' : (result == 1 ? 'losse_bet_title' : 'draw_bet_title')),
-            description: result == 2 ? t('winner_bet_body', {value: ethers.BigNumber.from(award)})+t('tokens') : result == 1 ? t('lose_bet_body') : t('draw_bet_body', {value: ethers.BigNumber.from(award)})+t('tokens'),
-            status: result == 2 ? "success" :(result == 1 ?  "error" : "warning"),
-          });
-        }
-        else{
-          toast({
-            title: t('sended_bet_title'),
-            description: t('sended_bet_body'),
-            status: "info",
-          });
-        }
+        toast({
+          title: t('sended_bet_title'),
+          description: t('sended_bet_body'),
+          status: "info",
+        });
         
       });
 
 		} catch (ex) {
       setIsBetting(false);
-      console.log(ex)
+      console.log(JSON.stringify(ex))
       if(ex.code == 4001){
         console.log(ex);
         toast({
@@ -98,7 +136,7 @@ const Home = () => {
       else{
         toast({
           title: 'Error',
-          description: String(ex),
+          description: JSON.stringify(ex),
           status: "error",
         });
       }
@@ -114,7 +152,6 @@ const Home = () => {
       py={{ base: 20, md: 28 }}
       direction={{ base: "column-reverse", md: "row" }}
     >
-
       <Stack flex={3} spacing={{ base: 5, md: 10 }}>
         <Text align={'center'} >
               <strong> {t('statistics',{even: ((evenCount * 100) /(evenCount+oddCount)).toFixed(2), odd: ((oddCount * 100) /(evenCount+oddCount)).toFixed(2)})} </strong>
@@ -137,12 +174,12 @@ const Home = () => {
           >
             <RadioGroup onChange={setValue} value={value}>
               <Radio value='0' padding={10}>
-              <Image src="./images/even.jpg" style={{width: 200, height: 200}}></Image>
+              <Image src={process.env.PUBLIC_URL + '/images/even.jpg'} style={{width: 200, height: 200}}></Image>
               <Text align={'center'} >
             {t('even')}</Text>
               </Radio>
               <Radio value='1' padding={10}>
-              <Image src="./images/odd.jpg" style={{width: 200, height: 200}}></Image>
+              <Image src={process.env.PUBLIC_URL + '/images/odd.jpg'} style={{width: 200, height: 200}}></Image>
               <Text align={'center'} >
             {t('odd')}</Text>
               </Radio>
@@ -164,18 +201,19 @@ const Home = () => {
               onClick={makeBetBtn}
               isLoading={isBetting}
             >
-            <Text> {t('bet_btn')} <strong>{betCost/1000000000000000000}</strong> {t('tokens')} {t('by')} <strong>{value == 1 ? t('odd') : t('even')}</strong>  </Text>
+            <Text> {t('bet_btn')} <strong>{ethers.utils.formatEther(betCost)}{tokenSymbol} ({(price * ethers.utils.formatEther(betCost)).toFixed(2)}{t('badge_symbol')})</strong>  {t('by')} <strong>{value == 1 ? t('odd') : t('even')}</strong>  </Text>
             </Button>
           </Stack>
                 
       </Stack>
       <Stack flex={1} spacing={{ base: 5, md: 10 }}>
           <Heading>{t('instructions')}</Heading>
-          <Text>{t('instructions_step_1')} </Text>
-          <Text>{t('instructions_step_2')} <strong>{((betCost * 2) * 98/100)/1000000000000000000}</strong> {t('tokens')}</Text>
-          <Text>{t('instructions_step_3')} <strong>{((betCost) * 98/100)/1000000000000000000}</strong> {t('tokens')}</Text>
+          <Text>{t('instructions_step_0')}<a target="_blank" href={ CHAINS[137].metamask_tutorial}><Image style={{width: 150, height: 60}} src={ CHAINS[137].network_image_url}></Image></a></Text>
+          <Text>{t('instructions_step_1')}<a target="_blank" href="https://chain.link/chainlink-vrf"><Image style={{width: 180, height:50}} src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Chainlink_Logo_Blue.svg/512px-Chainlink_Logo_Blue.svg.png?20210226190931" ></Image></a></Text>
+          <Text>{t('instructions_step_2')} <strong>{ethers.utils.formatEther(betCost) * 2 * 0.98}</strong> {tokenSymbol} ({(price * ethers.utils.formatEther(betCost)  * 2 * 0.98).toFixed(2)}{t('badge_symbol')})</Text>
+          <Text>{t('instructions_step_3')} <strong>{ethers.utils.formatEther(betCost) * 0.98}</strong> {tokenSymbol} ({(price * ethers.utils.formatEther(betCost) * 0.98).toFixed(2)}{t('badge_symbol')})</Text>
           <Text>{t('instructions_step_4')} </Text>
-          <Text color={'red'}>{t('instructions_step_5')} <strong>{((betCost * 2) * 1/100)/1000000000000000000}</strong> {t('tokens')} {t('instructions_step_5_2')}</Text>
+          <Text color={'red'}>{t('instructions_step_5')}</Text>
 
       </Stack>
     </Stack>

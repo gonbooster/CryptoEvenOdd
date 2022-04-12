@@ -3,14 +3,15 @@ import { WalletConnectConnector } from "@web3-react/walletconnect-connector";
 import { WalletLinkConnector } from "@web3-react/walletlink-connector";
 
 const injected = new InjectedConnector({
-  supportedChainIds: [1, 3, 4, 5, 42, 137]
+  supportedChainIds: [137, 80001]
 });
 
 const walletconnect = new WalletConnectConnector({
   rpc: {
-		1: 'https://mainnet.infura.io/v3/17a28e54d1824c4680e8c07d601b8005',
-		4: 'https://rinkeby.infura.io/v3/17a28e54d1824c4680e8c07d601b8005',
+		//18: 'https://testnet-rpc.thundercore.com',
+		//108: 'https://mainnet-rpc.thundercore.com',
 		137: 'https://matic-mainnet.chainstacklabs.com',
+		80001: 'https://rpc-mumbai.maticvigil.com'
 	},
   bridge: "https://bridge.walletconnect.org",
   qrcode: true,
@@ -20,7 +21,7 @@ const walletconnect = new WalletConnectConnector({
 const walletlink = new WalletLinkConnector({
   url: `https://mainnet.infura.io/v3/17a28e54d1824c4680e8c07d601b8005`,
 	appName: 'demo-app',
-	supportedChainIds: [ 1, 4 ]
+	supportedChainIds: [137, 80001 ]
 });
 
 export function resetWalletConnector() {

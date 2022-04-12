@@ -1,7 +1,7 @@
 const artifact = {
   address: {
-    137: "0x5FE021EA216C2B0da55E705A0b87fFa20ddA76dD",
-    4: "0x9072234fCF3654e39a064ED0960c0Bb5D867D8cb",
+    80001: "0x4f38EB3a6CD5EB7A596CB07f2E8c2c2B2350cAed",
+    137: '0xCfBD70e8927b131cF26E92F7eD7EeCA274Ac259b'
   },
   abi:[
     {
@@ -18,7 +18,13 @@ const artifact = {
       "type": "function"
     },
     {
-      "inputs": [],
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_betcost",
+          "type": "uint256"
+        }
+      ],
       "stateMutability": "nonpayable",
       "type": "constructor"
     },
@@ -42,11 +48,54 @@ const artifact = {
       "type": "event"
     },
     {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "requestId",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "uint256",
+          "name": "randomness",
+          "type": "uint256"
+        }
+      ],
+      "name": "rawFulfillRandomness",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
       "inputs": [],
       "name": "renounceOwnership",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "participant",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum CryptoEvenOddVRF.Result",
+          "name": "result",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "award",
+          "type": "uint256"
+        }
+      ],
+      "name": "Resolve",
+      "type": "event"
     },
     {
       "inputs": [
@@ -75,27 +124,22 @@ const artifact = {
       "type": "function"
     },
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": false,
-          "internalType": "enum CryptoBet.Result",
-          "name": "result",
-          "type": "uint8"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "award",
-          "type": "uint256"
-        }
-      ],
-      "name": "Winner",
-      "type": "event"
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
     },
     {
       "inputs": [],
-      "name": "balanceOf",
+      "name": "withdrawLINK",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "balance",
       "outputs": [
         {
           "internalType": "uint256",
@@ -126,6 +170,19 @@ const artifact = {
         {
           "internalType": "uint256",
           "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getLINKBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "link",
           "type": "uint256"
         }
       ],

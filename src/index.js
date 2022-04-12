@@ -5,7 +5,8 @@ import { HashRouter } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from '@ethersproject/providers';
-import "./i18n"
+import "./i18n";
+import customTheme from './theme';
 
 const getLibrary = (provider) => {
   const library = new Web3Provider(provider, 'any');
@@ -17,7 +18,7 @@ const getLibrary = (provider) => {
 ReactDOM.render(
   <React.StrictMode>
     <HashRouter>
-      <ChakraProvider>
+      <ChakraProvider theme={customTheme}>
         <Web3ReactProvider getLibrary={getLibrary}>
           <App />
         </Web3ReactProvider>
