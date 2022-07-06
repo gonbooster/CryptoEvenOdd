@@ -1,3 +1,6 @@
+## IMPORTANT
+This website is an example of DAPP and is for academic use only. In fact, when trying to bet an error is forced due to the lack of correct LINK coins in the contract to be able to use the Oracle.
+
 # Proyect
 
 EvenOdd is a gambling game with backend developed in Solidity and frontend in react.
